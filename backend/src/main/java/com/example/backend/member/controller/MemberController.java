@@ -1,6 +1,7 @@
 package com.example.backend.member.controller;
 
 import com.example.backend.member.dto.MemberForm;
+import com.example.backend.member.dto.MemberLoginForm;
 import com.example.backend.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -36,5 +37,11 @@ public class MemberController {
                         Map.of("type", "success",
                                 "text", "회원 가입 되었습니다.")));
 
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody MemberLoginForm memberLoginForm) {
+        memberService.login(memberLoginForm);
+        return null;
     }
 }

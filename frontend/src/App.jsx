@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import React from "react";
-import { MemberAdd } from "./MemberAdd.jsx";
-import { MemberLogin } from "./MemberLogin.jsx";
+import { MemberAdd } from "./feature/Member/MemberAdd.jsx";
+import { MemberLogin } from "./feature/Member/MemberLogin.jsx";
 
 function App() {
   return (

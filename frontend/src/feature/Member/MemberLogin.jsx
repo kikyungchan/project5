@@ -26,6 +26,8 @@ export function MemberLogin() {
         if (message) {
           toast(message.text, { type: message.type });
         }
+
+        navigate("/");
       })
       .catch((err) => {
         const message = err.response.data.message;
