@@ -16,7 +16,7 @@ public class MemberController {
     @PostMapping("/add")
     public ResponseEntity<?> add(@RequestBody MemberForm memberForm) {
         System.out.println(memberForm);
-//        memberService.add(memberForm);
+        memberService.add(memberForm);
         return null;
     }
 }
