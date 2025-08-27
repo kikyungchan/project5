@@ -1,5 +1,8 @@
-package com.example.backend;
+package com.example.backend.member.service;
 
+import com.example.backend.member.dto.MemberForm;
+import com.example.backend.member.entity.Member;
+import com.example.backend.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
