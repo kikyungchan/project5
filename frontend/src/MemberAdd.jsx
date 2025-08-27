@@ -5,9 +5,10 @@ import {
   FormControl,
   FormGroup,
   FormLabel,
+  FormText,
   Row,
 } from "react-bootstrap";
-import { use, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -41,9 +42,33 @@ export function MemberAdd() {
         }
         navigate("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log("안됌");
+        const message = err.response.data.message;
+        if (message) {
+          toast(message.text, { type: message.type });
+        }
+      });
   }
 
+  // 이메일, 암호, 별명 입력하지 않으면 가입버튼 비활성화
+
+  let disabled = false;
+  if (email === "") {
+    disabled = true;
+  }
+  if (password === "") {
+    disabled = true;
+  }
+  if (loginId === "") {
+    disabled = true;
+  }
+  // password와 password2가 일치하지 않으면 비활성화
+  let passwordConfirm = true;
+  if (password !== password2) {
+    disabled = true;
+    passwordConfirm = false;
+  }
   return (
     <Row className="justify-content-center">
       <Col xs={12} md={8} lg={6} xl={3}>
@@ -72,7 +97,13 @@ export function MemberAdd() {
             <FormControl
               value={password2}
               onChange={(e) => setPassword2(e.target.value.trim())}
-            ></FormControl>
+            >
+              {passwordConfirm || (
+                <FormText className="text-danger">
+                  패스워드가 일치하지 않습니다.
+                </FormText>
+              )}
+            </FormControl>
           </FormGroup>
         </div>
         <div>
@@ -129,7 +160,9 @@ export function MemberAdd() {
           </FormGroup>
         </div>
         <div>
-          <Button onClick={handleSaveClick}>가입</Button>
+          <Button onClick={handleSaveClick} disabled={disabled}>
+            가입
+          </Button>
           <Button className="btn btn-secondary" onClick={() => navigate(-1)}>
             취소
           </Button>
