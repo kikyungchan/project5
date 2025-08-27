@@ -13,12 +13,11 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 export function MemberAdd() {
-  const [id, setId] = useState("");
-  const [password1, setPassword1] = useState("");
+  const [loginId, setLoginId] = useState("");
+  const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [name, setName] = useState("");
-  const [male, setMale] = useState("");
-  const [female, setFemale] = useState("");
+  const [gender, setGender] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
@@ -27,11 +26,12 @@ export function MemberAdd() {
     // post
     axios
       .post("/api/member/add", {
-        id: id,
-        password1: password1,
+        loginId: loginId,
+        password: password,
         name: name,
         phone: phone,
         email: email,
+        gender: gender,
       })
       .then((res) => {
         console.log("잘됌");
@@ -52,8 +52,8 @@ export function MemberAdd() {
           <FormGroup className="mb-3">
             <FormLabel>아이디</FormLabel>
             <FormControl
-              value={id}
-              onChange={(e) => setId(e.target.value.trim())}
+              value={loginId}
+              onChange={(e) => setLoginId(e.target.value.trim())}
             ></FormControl>
           </FormGroup>
         </div>
@@ -61,8 +61,8 @@ export function MemberAdd() {
           <FormGroup className="mb-3">
             <FormLabel>비밀번호</FormLabel>
             <FormControl
-              value={password1}
-              onChange={(e) => setPassword1(e.target.value.trim())}
+              value={password}
+              onChange={(e) => setPassword(e.target.value.trim())}
             ></FormControl>
           </FormGroup>
         </div>
@@ -106,9 +106,11 @@ export function MemberAdd() {
           <FormGroup>
             <FormCheck
               label="남"
-              type="checkbox"
+              type="radio"
               name="gender"
-              value={male}
+              value="male"
+              checked={gender === "male"}
+              onChange={(e) => setGender(e.target.value)}
               reverse
             ></FormCheck>
           </FormGroup>
@@ -117,9 +119,11 @@ export function MemberAdd() {
           <FormGroup>
             <FormCheck
               label="여"
-              type="checkbox"
+              type="radio"
               name="gender"
-              value={female}
+              value="female"
+              checked={gender === "female"}
+              onChange={(e) => setGender(e.target.value)}
               reverse
             ></FormCheck>
           </FormGroup>
