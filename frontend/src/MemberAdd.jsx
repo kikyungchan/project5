@@ -51,7 +51,7 @@ export function MemberAdd() {
       });
   }
 
-  // 이메일, 암호, 별명 입력하지 않으면 가입버튼 비활성화
+  // 이메일, 암호, 별명,성별 입력하지 않으면 가입버튼 비활성화
 
   let disabled = false;
   if (email === "") {
