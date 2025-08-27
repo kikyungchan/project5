@@ -63,6 +63,9 @@ export function MemberAdd() {
   if (loginId === "") {
     disabled = true;
   }
+  if (gender === null || gender === "") {
+    disabled = true;
+  }
   // password와 password2가 일치하지 않으면 비활성화
   let passwordConfirm = true;
   if (password !== password2) {
@@ -79,7 +82,7 @@ export function MemberAdd() {
             <FormControl
               value={loginId}
               onChange={(e) => setLoginId(e.target.value.trim())}
-            ></FormControl>
+            />
           </FormGroup>
         </div>
         <div>
@@ -88,7 +91,7 @@ export function MemberAdd() {
             <FormControl
               value={password}
               onChange={(e) => setPassword(e.target.value.trim())}
-            ></FormControl>
+            />
           </FormGroup>
         </div>
         <div>
@@ -97,13 +100,12 @@ export function MemberAdd() {
             <FormControl
               value={password2}
               onChange={(e) => setPassword2(e.target.value.trim())}
-            >
-              {passwordConfirm || (
-                <FormText className="text-danger">
-                  패스워드가 일치하지 않습니다.
-                </FormText>
-              )}
-            </FormControl>
+            />
+            {passwordConfirm || (
+              <FormText className="text-danger">
+                패스워드가 일치하지 않습니다.
+              </FormText>
+            )}
           </FormGroup>
         </div>
         <div>
@@ -112,7 +114,7 @@ export function MemberAdd() {
             <FormControl
               value={name}
               onChange={(e) => setName(e.target.value.trim())}
-            ></FormControl>
+            />
           </FormGroup>
         </div>
         <div>
@@ -121,7 +123,7 @@ export function MemberAdd() {
             <FormControl
               value={phone}
               onChange={(e) => setPhone(e.target.value.trim())}
-            ></FormControl>
+            />
           </FormGroup>
         </div>
         <div>
@@ -130,7 +132,7 @@ export function MemberAdd() {
             <FormControl
               value={email}
               onChange={(e) => setEmail(e.target.value.trim())}
-            ></FormControl>
+            />
           </FormGroup>
         </div>
         <div>
