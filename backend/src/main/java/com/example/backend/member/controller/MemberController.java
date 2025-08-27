@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/member")
@@ -18,7 +20,21 @@ public class MemberController {
     @PostMapping("/add")
     public ResponseEntity<?> add(@RequestBody MemberForm memberForm) {
         System.out.println(memberForm);
-        memberService.add(memberForm);
-        return null;
+        try {
+
+            memberService.add(memberForm);
+        } catch (Exception e) {
+            e.printStackTrace();
+            String message = e.getMessage();
+            return ResponseEntity.badRequest().body(
+                    Map.of("message",
+                            Map.of("type", "error",
+                                    "text", message)));
+        }
+        return ResponseEntity.ok().body(
+                Map.of("message",
+                        Map.of("type", "success",
+                                "text", "회원 가입 되었습니다.")));
+
     }
 }
