@@ -4,7 +4,7 @@ import "./css/Home.css";
 
 function Home() {
   return (
-    <main className="home">
+    <main className="container">
       <MainBanner />
 
       <section className="home-shortcuts">

@@ -3,7 +3,7 @@ import "./css/Header.css";
 
 function Header() {
   return (
-    <header className="header">
+    <header className="header container.nav">
       <div className="header-top">
         <a href="/Home" className="logo">
           병원 로고
@@ -14,12 +14,22 @@ function Header() {
         </div>
       </div>
       <nav className="header-nav">
-        <ul>
-          <li>진료안내</li>
-          <li>이용안내</li>
-          <li>건강정보</li>
-          <li>고객참여</li>
-          <li>병원소개</li>
+        <ul className="header-menu">
+          <li>
+            <a href="/guide">진료안내</a>
+          </li>
+          <li>
+            <a href="/usage">이용안내</a>
+          </li>
+          <li>
+            <a href="/health">건강정보</a>
+          </li>
+          <li>
+            <a href="/customer">고객참여</a>
+          </li>
+          <li>
+            <a href="/about">병원소개</a>
+          </li>
         </ul>
       </nav>
     </header>
