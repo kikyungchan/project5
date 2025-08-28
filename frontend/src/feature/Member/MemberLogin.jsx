@@ -7,12 +7,14 @@ import {
   FormLabel,
   Row,
 } from "react-bootstrap";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { AuthenticationContext } from "../../AuthenticationContextProvider.jsx";
 
 export function MemberLogin() {
+  const { login } = useContext(AuthenticationContext);
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [loginId, setLoginId] = useState("");
@@ -22,6 +24,9 @@ export function MemberLogin() {
     axios
       .post("/api/member/login", { loginId: loginId, password: password })
       .then((res) => {
+        const token = res.data.token;
+        login(token);
+
         const message = res.data.message;
         if (message) {
           toast(message.text, { type: message.type });

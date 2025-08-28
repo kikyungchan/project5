@@ -14,7 +14,7 @@ public class Auth {
     @EmbeddedId
     private AuthId id;
 
-    @MapsId("login_id")
+    @MapsId("loginId")
     @ManyToOne(optional = false)
     @JoinColumn(name = "login_id", nullable = false)
     private Member member;

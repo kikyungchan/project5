@@ -41,7 +41,10 @@ public class MemberController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody MemberLoginForm memberLoginForm) {
-        memberService.login(memberLoginForm);
-        return null;
+        String token = memberService.login(memberLoginForm);
+        return ResponseEntity.ok().body(Map.of("token", token,
+                "message",
+                Map.of("type", "success",
+                        "text", "로그인 되었습니다.")));
     }
 }

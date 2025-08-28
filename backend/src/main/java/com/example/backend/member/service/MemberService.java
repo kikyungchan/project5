@@ -46,8 +46,8 @@ public class MemberService {
         Optional<Member> db = memberRepository.findById(loginForm.getLoginId());
         if (db.isPresent()) {
             // 있으면 패스워드 맞는지
-//            if (db.get().getPassword().equals(loginForm.getPassword())) {
-            if (passwordEncoder.matches(loginForm.getPassword(), db.get().getPassword())) {
+            if (db.get().getPassword().equals(loginForm.getPassword())) {
+//            if (passwordEncoder.matches(loginForm.getPassword(), db.get().getPassword())) {
                 List<Auth> authList = authRepository.findByMember(db.get());
                 // 고전적인 방법
 //                String authListString = "";
@@ -73,6 +73,6 @@ public class MemberService {
 
         }
 
-        throw new RuntimeException("이메일 또는 패스워드가 일치하지 않습니다.");
+        throw new RuntimeException("아이디 또는 패스워드가 일치하지 않습니다.");
     }
 }
