@@ -11,15 +11,6 @@
     gap: 50px;
 }
 
-.container.nav {
-    margin: 0 auto;
-    padding: 30px 60px;
-}
-
-.header-links {
-    color: black;
-}
-
 .logo {
     font-size: 20px;
     font-weight: bold;
@@ -38,12 +29,11 @@
     color: #1b64da;
 }
 
-.header-menu a {
-    color: black;
-    text-decoration: none;
+.header-nav {
+    background-color: #fff;
 }
 
-.header-nav ul {
+.header-menu {
     display: flex;
     justify-content: center;
     margin: 0;
@@ -51,10 +41,55 @@
     list-style: none;
 }
 
-.header-nav li {
+.header-menu li {
     margin: 0 20px;
     padding: 12px 0;
-    color: white;
     font-weight: 500;
     cursor: pointer;
+    position: relative; /* dropdown absolute 기준 */
+}
+
+.header-menu a {
+    text-decoration: none;
+    color: black;
+}
+
+/* ✅ 드롭다운 */
+.dropdown {
+    position: absolute;
+    top: 100%; /* 메뉴 바로 아래 */
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    min-width: 200px;
+    padding: 10px 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+
+    display: none; /* 기본은 숨김 → 공간 차지 X */
+}
+
+.menu-item:hover .dropdown {
+    display: block; /* hover 시에만 표시 */
+}
+
+.dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown li {
+    padding: 8px 20px;
+}
+
+.dropdown li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.dropdown li a:hover {
+    background-color: #f2f6fc;
+    color: #1b64da;
 }
