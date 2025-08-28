@@ -1,0 +1,30 @@
+.main-banner {
+    background-color: #f7f9fc;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.banner-text h2 {
+    font-size: 24px;
+    color: #1b64da;
+    margin-bottom: 10px;
+}
+
+.banner-text p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.banner-btn {
+    padding: 10px 20px;
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.banner-btn:hover {
+    background-color: #d9363e;
+}

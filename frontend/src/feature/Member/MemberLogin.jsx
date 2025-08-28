@@ -11,11 +11,11 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { AuthenticationContext } from "../../AuthenticationContextProvider.jsx";
+import { AuthenticationContext } from "../common/AuthenticationContextProvider.jsx";
 
 export function MemberLogin() {
-  const { login } = useContext(AuthenticationContext);
   const navigate = useNavigate();
+  const { login } = useContext(AuthenticationContext);
   const [password, setPassword] = useState("");
   const [loginId, setLoginId] = useState("");
 
