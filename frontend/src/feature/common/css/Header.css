@@ -31,6 +31,7 @@
 .header-nav {
     display: flex;
     justify-content: center;
+    position: relative;   /* submenu-bar 위치 기준 */
 }
 
 .header-menu {
@@ -47,57 +48,63 @@
     font-weight: bold;
 }
 
+.header-menu a,
 .menu-item > span,
 .menu-item > a {
     text-decoration: none;
-    color: #000;
+    color: #000;   /* 전체 메뉴 글씨 검은색 */
     font-size: 15px;
 }
 
-.dropdown {
+.header-menu a:hover,
+.menu-item:hover > span,
+.menu-item:hover > a {
+    color: #1b64da; /* hover 시 파란색 */
+}
+
+/* 네비게이션 아래 전체 div */
+.submenu-bar {
     position: absolute;
-    top: 10%;
+    top: 100%;  /* nav 바로 밑 */
     left: 0;
+    width: 100%;
     background: #fff;
-    border: 1px solid #ddd;
-    padding: 15px 20px;
-    min-width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.2s ease-in-out;
+    border-top: 1px solid #ddd;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    /* 🔽 애니메이션 효과 */
+    opacity: 0;
+    transform: translateY(-10px);   /* 위에서 내려오는 시작점 */
+    animation: slideDown 0.25s ease forwards;
     z-index: 100;
 }
 
-.dropdown ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.submenu-bar ul {
+    display: flex;
+    gap: 40px;
 }
 
-.dropdown li {
-    margin-bottom: 10px;
-}
-
-.dropdown li:last-child {
-    margin-bottom: 0;
-}
-
-.dropdown a {
-    text-decoration: none;
+.submenu-bar a {
     color: #333;
     font-size: 14px;
+    text-decoration: none;
 }
 
-.dropdown a:hover {
+.submenu-bar a:hover {
     color: #1b64da;
 }
 
-@keyframes fadeIn {
+/* 내려오는 애니메이션 정의 */
+@keyframes slideDown {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(-10px); /* 위에서 시작 */
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0);     /* 제자리 */
     }
 }
