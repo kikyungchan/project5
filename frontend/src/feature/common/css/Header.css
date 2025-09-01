@@ -32,6 +32,7 @@
     display: flex;
     justify-content: center;
     position: relative; /* submenu-bar 위치 기준 */
+    border-top: 1px solid #ddd;
 }
 
 .header-menu {
@@ -45,6 +46,10 @@
 .menu-item {
     position: relative;
     cursor: pointer;
+}
+
+.menu-item:hover {
+    color: #1b64da;
 }
 
 .header-menu a,

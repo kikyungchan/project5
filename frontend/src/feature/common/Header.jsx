@@ -8,14 +8,6 @@ function Header() {
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(null);
 
-  const handleReservationClick = () => {
-    if (user) {
-      navigate("/reservation");
-    } else {
-      navigate("/login");
-    }
-  };
-
   const handleLogout = () => {
     logout();
     navigate("/");
@@ -48,7 +40,6 @@ function Header() {
           )}
         </div>
       </div>
-
       {/* 네비게이션 전체 hover 영역으로  */}
       <nav className="header-nav" onMouseLeave={() => setOpenMenu(null)}>
         <ul className="header-menu">
@@ -82,7 +73,7 @@ function Header() {
             <ul>
               <li>
                 {user ? (
-                  <a href="/Reservation">인터넷 진료예약</a>
+                  <a href="/reservation">인터넷 진료예약</a>
                 ) : (
                   <a href="/login">인터넷 진료예약</a>
                 )}
