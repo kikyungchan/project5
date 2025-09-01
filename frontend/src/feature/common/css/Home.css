@@ -49,3 +49,31 @@
 .shortcut button:hover {
     background-color: #1649a3;
 }
+
+/* 모든 버튼 공통 스타일 */
+.home-shortcuts button,
+.login-box button {
+    padding: 8px 16px;
+    border: 1px solid #1b64da; /* 진한 파랑 */
+    border-radius: 4px;
+    background-color: #fff;
+    color: #1b64da;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* hover 효과 */
+.home-shortcuts button:hover,
+.login-box button:hover {
+    background-color: #1b64da;
+    color: #fff;
+}
+
+/* 로그아웃 버튼은 우측 상단 작은 버튼 느낌 */
+.logout-btn {
+    margin-left: 10px;
+    padding: 4px 10px;
+    font-size: 12px;
+}
