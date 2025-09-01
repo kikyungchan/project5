@@ -45,7 +45,6 @@
 .menu-item {
     position: relative;
     cursor: pointer;
-    font-weight: bold;
 }
 
 .header-menu a,
