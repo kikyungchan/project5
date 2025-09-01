@@ -58,6 +58,8 @@ export function AuthenticationContextProvider({ children }) {
         name: res.data.name,
         scope: payload.scp.split(" "),
       });
+      console.log(res.data.loginId);
+      console.log(res.data.name);
     });
   }
 

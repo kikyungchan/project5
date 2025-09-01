@@ -5,10 +5,10 @@ import com.example.backend.member.dto.MemberLoginForm;
 import com.example.backend.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -46,5 +46,16 @@ public class MemberController {
                 "message",
                 Map.of("type", "success",
                         "text", "로그인 되었습니다.")));
+    }
+
+    @GetMapping(params = "loginId")
+    @PreAuthorize("isAuthenticated() or hasAuthority('SCOPE_admin')")
+    public ResponseEntity<?> getMemberByLoginId(String loginId, Authentication authentication) {
+        if (authentication.getName().equals(loginId) ||
+            authentication.getAuthorities().contains(new SimpleGrantedAuthority("SCOPE_admin"))) {
+            return ResponseEntity.ok().body(memberService.getByLoginId(loginId));
+        } else {
+            return ResponseEntity.status(403).build();
+        }
     }
 }

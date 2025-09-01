@@ -1,5 +1,6 @@
 package com.example.backend.member.service;
 
+import com.example.backend.member.dto.MemberDto;
 import com.example.backend.member.dto.MemberForm;
 import com.example.backend.member.dto.MemberLoginForm;
 import com.example.backend.member.entity.Auth;
@@ -47,14 +48,8 @@ public class MemberService {
         if (db.isPresent()) {
             // 있으면 패스워드 맞는지
             if (db.get().getPassword().equals(loginForm.getPassword())) {
-//            if (passwordEncoder.matches(loginForm.getPassword(), db.get().getPassword())) {
                 List<Auth> authList = authRepository.findByMember(db.get());
-                // 고전적인 방법
-//                String authListString = "";
-//                for (Auth auth : authList) {
-//                    authListString = authListString + " " + auth.getId().getAuthName();
-//                }
-//                authListString = authListString.trim();
+
                 String authListStirng = authList.stream()
                         .map(auth -> auth.getId().getAuthName())
                         .collect(Collectors.joining(" "));
@@ -74,5 +69,15 @@ public class MemberService {
         }
 
         throw new RuntimeException("아이디 또는 패스워드가 일치하지 않습니다.");
+    }
+
+    public MemberDto getByLoginId(String loginId) {
+        Member member = memberRepository.findById(loginId).get();
+
+        MemberDto memberDto = new MemberDto();
+        memberDto.setLoginId(member.getLoginId());
+        memberDto.setName(member.getName());
+
+        return memberDto;
     }
 }

@@ -1,8 +1,10 @@
 import React from "react";
 import MainBanner from "../common/MainBanner";
 import "./css/Home.css";
+import { useNavigate } from "react-router";
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <main className="container">
       <MainBanner />
@@ -26,7 +28,7 @@ function Home() {
         <div className="shortcut">
           <h3>로그인</h3>
           <p>회원 및 비회원 로그인</p>
-          <button>로그인</button>
+          <button onClick={() => navigate("/login")}>로그인</button>
         </div>
       </section>
     </main>
