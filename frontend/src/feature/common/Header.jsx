@@ -74,12 +74,11 @@ function Header() {
           <div className="submenu-bar">
             <ul>
               <li>
-                <button
-                  onClick={handleReservationClick}
-                  className="submenu-btn"
-                >
-                  인터넷 진료예약
-                </button>
+                {user ? (
+                  <a href="/Reservation">인터넷 진료예약</a>
+                ) : (
+                  <a href="/login">인터넷 진료예약</a>
+                )}
               </li>
               <li>
                 <a href="/check">예약확인/취소</a>

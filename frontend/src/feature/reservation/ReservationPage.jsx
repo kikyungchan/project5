@@ -40,6 +40,29 @@ export default function ReservationPage() {
     }
   }, [selectedDept]);
 
+  function handleReservationButton() {
+    const dateStr = selectedDate.toISOString().split("T")[0]; // yyyy-MM-dd
+    const dateTime = `${dateStr}T${selectedTime}:00`; // "2025-09-05T09:00:00"
+    axios
+      .post("/api/reservation", null, {
+        params: {
+          doctorId: selectedDoctor.id,
+          memberId: user.loginId,
+          dateTime: dateTime,
+        },
+      })
+      .then((res) => {
+        alert("예약이 완료되었습니다.");
+      })
+      .catch((err) => {
+        if (err.response && err.response.data.message) {
+          alert(err.response.data.message);
+        } else {
+          alert("예약 중 오류가 발생했습니다.");
+        }
+      });
+  }
+
   return (
     <div className="reservation-container">
       <h2>인터넷 진료예약</h2>
@@ -148,11 +171,7 @@ export default function ReservationPage() {
               {selectedDate && selectedTime && (
                 <button
                   className="confirm-btn"
-                  onClick={() => {
-                    alert(
-                      `예약 확정!\n환자명: ${user?.name}\n진료과: ${selectedDept?.name}\n의사: ${selectedDoctor?.name}\n일시: ${selectedDate.toLocaleDateString()} ${selectedTime}`,
-                    );
-                  }}
+                  onClick={handleReservationButton}
                 >
                   예약 확정하기
                 </button>

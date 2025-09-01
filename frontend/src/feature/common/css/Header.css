@@ -31,7 +31,7 @@
 .header-nav {
     display: flex;
     justify-content: center;
-    position: relative;   /* submenu-bar 위치 기준 */
+    position: relative; /* submenu-bar 위치 기준 */
 }
 
 .header-menu {
@@ -52,7 +52,7 @@
 .menu-item > span,
 .menu-item > a {
     text-decoration: none;
-    color: #000;   /* 전체 메뉴 글씨 검은색 */
+    color: #000; /* 전체 메뉴 글씨 검은색 */
     font-size: 15px;
 }
 
@@ -65,7 +65,7 @@
 /* 네비게이션 아래 전체 div */
 .submenu-bar {
     position: absolute;
-    top: 100%;  /* nav 바로 밑 */
+    top: 100%; /* nav 바로 밑 */
     left: 0;
     width: 100%;
     background: #fff;
@@ -73,11 +73,10 @@
     padding: 20px 40px;
     display: flex;
     justify-content: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    /* 🔽 애니메이션 효과 */
     opacity: 0;
-    transform: translateY(-10px);   /* 위에서 내려오는 시작점 */
+    transform: translateY(-10px); /* 위에서 내려오는 시작점 */
     animation: slideDown 0.25s ease forwards;
     z-index: 100;
 }
@@ -85,6 +84,7 @@
 .submenu-bar ul {
     display: flex;
     gap: 40px;
+    list-style: none;
 }
 
 .submenu-bar a {
@@ -105,6 +105,6 @@
     }
     to {
         opacity: 1;
-        transform: translateY(0);     /* 제자리 */
+        transform: translateY(0); /* 제자리 */
     }
 }
