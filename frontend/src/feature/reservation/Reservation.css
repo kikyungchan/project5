@@ -119,12 +119,17 @@ html {
     font-weight: bold;
 }
 
+.reserve-btn.active {
+    border-color: #1b64da;
+    background: #1b64da;
+    color: #fff;
+}
+
 .reserve-btn {
     margin-top: 8px;
     padding: 6px 12px;
-    border: none;
-    background: #1b64da;
-    color: #fff;
+    border: 1px solid #000;
+    color: #000;
     border-radius: 4px;
     cursor: pointer;
 }
@@ -135,3 +140,59 @@ html {
     border: 1px solid #e5e7eb;
     border-radius: 8px;
 }
+
+.time-section {
+    margin-top: 16px;
+}
+
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 가로 3개씩 */
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.time-btn {
+    padding: 6px 10px;
+    border: 1px solid #1b64da;
+    border-radius: 6px;
+    background: #fff;
+    color: #1b64da;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.time-btn.active {
+    background: #1b64da;
+    color: #fff;
+}
+
+.confirm-btn {
+    margin-top: 16px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    /*background: #1b64da;*/
+    /*color: #fff;*/
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: #ddd;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.confirm-btn {
+    background: #1b64da;
+    border: none;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+

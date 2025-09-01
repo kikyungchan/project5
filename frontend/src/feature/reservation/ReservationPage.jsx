@@ -3,15 +3,29 @@ import axios from "axios";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./Reservation.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
 import { AuthenticationContext } from "../common/AuthenticationContextProvider.jsx";
 
 export default function ReservationPage() {
   const { user } = useContext(AuthenticationContext);
   const [departments, setDepartments] = useState([]);
-  const [selectedDept, setSelectedDept] = useState(null);
   const [doctors, setDoctors] = useState([]);
+  const [selectedDept, setSelectedDept] = useState(null);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
+  // 샘플 시간 리스트 (09:00 ~ 16:00)
+  const timeSlots = [
+    "09:00",
+    "10:00",
+    "11:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+  ];
 
   useEffect(() => {
     axios.get("/api/departments").then((res) => setDepartments(res.data));
@@ -65,7 +79,7 @@ export default function ReservationPage() {
                       <div className="doctor-name">{doc.name}</div>
                       <div className="doctor-position">{doc.position}</div>
                       <button
-                        className="reserve-btn"
+                        className={`reserve-btn ${selectedDoctor?.id === doc.id ? "active" : ""}`}
                         onClick={() => setSelectedDoctor(doc)}
                       >
                         선택
@@ -108,8 +122,112 @@ export default function ReservationPage() {
                 formatDay={(locale, date) => date.getDate()}
                 onChange={(date) => setSelectedDate(date)}
               />
+              {/* 시간 선택 */}
+              {selectedDate && (
+                <div className="time-section">
+                  <h5>시간 선택</h5>
+                  <div className="time-grid">
+                    {timeSlots.map((time) => (
+                      <button
+                        key={time}
+                        className={`time-btn ${selectedTime === time ? "active" : ""}`}
+                        data-bs-toggle="modal"
+                        data-bs-target="#reservationModal"
+                        onClick={() => {
+                          setSelectedTime(time);
+                        }}
+                      >
+                        {time}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* 예약 확정 버튼 */}
+              {selectedDate && selectedTime && (
+                <button
+                  className="confirm-btn"
+                  onClick={() => {
+                    alert(
+                      `예약 확정!\n환자명: ${user?.name}\n진료과: ${selectedDept?.name}\n의사: ${selectedDoctor?.name}\n일시: ${selectedDate.toLocaleDateString()} ${selectedTime}`,
+                    );
+                  }}
+                >
+                  예약 확정하기
+                </button>
+              )}
             </div>
           )}
+        </div>
+      </div>
+
+      {/* Bootstrap Modal */}
+      <div
+        className="modal fade"
+        id="reservationModal"
+        tabIndex="-1"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-lg modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">예약 시 주의사항</h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="닫기"
+              ></button>
+            </div>
+            <div className="modal-body">
+              <div className="alert alert-info">
+                정확히 선택하기 어려운 경우 예약센터(1588-5700)로 문의 후 예약해
+                주세요. <br />
+                <span className="text-danger">
+                  진료 분야가 맞지 않게 예약된 경우, 진료를 받을 수 없습니다.
+                </span>
+              </div>
+              <p>
+                <strong>{selectedDept?.name}</strong>/{" "}
+                <strong>{selectedDoctor?.name}</strong>
+              </p>
+              <p>
+                선택한 일시: {selectedDate?.toLocaleDateString()} {selectedTime}
+              </p>
+              <textarea
+                placeholder="진단내용을 간략히 입력해주세요."
+                maxLength={25}
+                className="form-control"
+              ></textarea>
+              <div className="form-check mt-3">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="confirmCheck"
+                />
+                <label className="form-check-label" htmlFor="confirmCheck">
+                  상기 내용을 확인했습니다.
+                </label>
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                취소
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary"
+                data-bs-dismiss="modal"
+              >
+                확인
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
