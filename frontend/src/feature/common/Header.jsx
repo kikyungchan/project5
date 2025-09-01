@@ -7,10 +7,7 @@ function Header() {
   const { user, logout } = useContext(AuthenticationContext);
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(null);
-
-  useEffect(() => {
-    console.log("현재 user 상태:", user);
-  });
+  
   const handleReservationClick = () => {
     if (user) {
       navigate("/reservation");

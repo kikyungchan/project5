@@ -6,6 +6,7 @@ import Header from "./feature/common/Header.jsx";
 import Home from "./feature/common/Home.jsx";
 import Footer from "./feature/common/Footer.jsx";
 import { AuthenticationContextProvider } from "./feature/common/AuthenticationContextProvider.jsx";
+import { ReservationPage } from "./ReservationPage.jsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="signup" element={<MemberAdd />} />
           <Route path="login" element={<MemberLogin />} />
+          <Route path="reservation" element={<ReservationPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
