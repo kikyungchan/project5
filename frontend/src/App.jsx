@@ -6,7 +6,7 @@ import Header from "./feature/common/Header.jsx";
 import Home from "./feature/common/Home.jsx";
 import Footer from "./feature/common/Footer.jsx";
 import { AuthenticationContextProvider } from "./feature/common/AuthenticationContextProvider.jsx";
-import { ReservationPage } from "./ReservationPage.jsx";
+import ReservationPage from "./feature/reservation/ReservationPage.jsx";
 
 function App() {
   return (
