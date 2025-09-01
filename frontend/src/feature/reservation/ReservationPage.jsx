@@ -65,6 +65,13 @@ export default function ReservationPage() {
       })
       .then((res) => {
         alert("예약이 완료되었습니다.");
+        return axios.get("/api/available", {
+          params: { doctorId: selectedDoctor.id, date: dateStr },
+        });
+      })
+      .then((res) => {
+        setReservedTimes(res.data.reservedTimes);
+        setSelectedTime(null); // 선택했던 시간 초기화해주는 게 UX적으로 좋음
       })
       .catch((err) => {
         if (err.response && err.response.data.message) {
