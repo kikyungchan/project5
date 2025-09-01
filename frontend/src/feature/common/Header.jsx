@@ -52,7 +52,14 @@ function Header() {
       {/* 네비게이션 전체 hover 영역으로  */}
       <nav className="header-nav" onMouseLeave={() => setOpenMenu(null)}>
         <ul className="header-menu">
-          <li className="menu-item" onMouseEnter={() => setOpenMenu("guide")}>
+          <li
+            className="menu-item"
+            style={{
+              fontSize: "22px",
+              fontWeight: "bold",
+            }}
+            onMouseEnter={() => setOpenMenu("guide")}
+          >
             진료안내
           </li>
           <li>

@@ -52,7 +52,8 @@
 .menu-item > a {
     text-decoration: none;
     color: #000; /* 전체 메뉴 글씨 검은색 */
-    font-size: 15px;
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .header-menu a:hover,
