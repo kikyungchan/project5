@@ -16,6 +16,7 @@ export default function ReservationPage() {
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
+  const [reservedTimes, setReservedTimes] = useState([]);
   // 샘플 시간 리스트 (09:00 ~ 16:00)
   const timeSlots = [
     "09:00",
@@ -26,7 +27,18 @@ export default function ReservationPage() {
     "15:00",
     "16:00",
   ];
-
+  useEffect(() => {
+    if (selectedDoctor && selectedDate) {
+      const dateStr = selectedDate.toISOString().split("T")[0]; // yyyy-MM-dd
+      axios
+        .get("/api/available", {
+          params: { doctorId: selectedDoctor.id, date: dateStr },
+        })
+        .then((res) => {
+          setReservedTimes(res.data.reservedTimes); // ["09:00", "13:00"]
+        });
+    }
+  }, [selectedDoctor, selectedDate]);
   useEffect(() => {
     axios.get("/api/departments").then((res) => setDepartments(res.data));
   }, []);
@@ -154,11 +166,10 @@ export default function ReservationPage() {
                       <button
                         key={time}
                         className={`time-btn ${selectedTime === time ? "active" : ""}`}
+                        disabled={reservedTimes.includes(time)}
                         data-bs-toggle="modal"
                         data-bs-target="#reservationModal"
-                        onClick={() => {
-                          setSelectedTime(time);
-                        }}
+                        onClick={() => setSelectedTime(time)}
                       >
                         {time}
                       </button>
@@ -168,14 +179,14 @@ export default function ReservationPage() {
               )}
 
               {/* 예약 확정 버튼 */}
-              {selectedDate && selectedTime && (
-                <button
-                  className="confirm-btn"
-                  onClick={handleReservationButton}
-                >
-                  예약 확정하기
-                </button>
-              )}
+              {/*{selectedDate && selectedTime && (*/}
+              {/*  <button*/}
+              {/*    className="confirm-btn"*/}
+              {/*    onClick={handleReservationButton}*/}
+              {/*  >*/}
+              {/*    예약 확정하기*/}
+              {/*  </button>*/}
+              {/*)}*/}
             </div>
           )}
         </div>
@@ -219,16 +230,6 @@ export default function ReservationPage() {
                 maxLength={25}
                 className="form-control"
               ></textarea>
-              <div className="form-check mt-3">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  id="confirmCheck"
-                />
-                <label className="form-check-label" htmlFor="confirmCheck">
-                  상기 내용을 확인했습니다.
-                </label>
-              </div>
             </div>
             <div className="modal-footer">
               <button
@@ -242,6 +243,7 @@ export default function ReservationPage() {
                 type="button"
                 className="btn btn-primary"
                 data-bs-dismiss="modal"
+                onClick={handleReservationButton}
               >
                 확인
               </button>

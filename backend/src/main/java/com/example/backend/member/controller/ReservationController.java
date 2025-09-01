@@ -11,9 +11,14 @@ import com.example.backend.member.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -50,5 +55,38 @@ public class ReservationController {
     ) {
         LocalDateTime reservationDateTime = LocalDateTime.parse(dateTime);
         return reservationService.createReservation(doctorId, memberId, reservationDateTime);
+    }
+
+    @GetMapping("/available")
+    public Map<String, Object> getAvailableTimes(
+            @RequestParam Integer doctorId,
+            @RequestParam String date // "2025-09-05"
+    ) {
+        LocalDate localDate = LocalDate.parse(date);
+
+        // 예약된 시간 목록 (LocalTime)
+        List<LocalTime> reservedTimes = reservationService.getReservedTimes(doctorId, localDate);
+
+        // 문자열 변환: HH:mm
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        List<String> reservedTimeStrings = reservedTimes.stream()
+                .map(t -> t.format(formatter))
+                .toList();
+
+        // 병원 기본 예약 가능 시간 (예시: 09:00~16:00, 점심 12:00 제외)
+        List<String> allTimeSlots = List.of("09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00");
+
+        // 예약 불가능한 시간 제외
+        List<String> availableTimes = allTimeSlots.stream()
+                .filter(t -> !reservedTimeStrings.contains(t))
+                .toList();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("date", localDate);
+        response.put("doctorId", doctorId);
+        response.put("availableTimes", availableTimes);
+        response.put("reservedTimes", reservedTimeStrings);
+
+        return response;
     }
 }

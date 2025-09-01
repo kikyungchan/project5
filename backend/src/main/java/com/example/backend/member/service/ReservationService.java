@@ -10,7 +10,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.List;
 
 @Service
 @Transactional
@@ -33,5 +36,18 @@ public class ReservationService {
         reservation.setMember(member);
         reservation.setReservationDateTime(reservationDateTime);
         return reservationRepository.save(reservation);
+    }
+
+    public List<LocalTime> getReservedTimes(Integer doctorId, LocalDate date) {
+        LocalDateTime startOfDay = date.atStartOfDay();
+        LocalDateTime endOfDay = date.atTime(LocalTime.MAX);
+
+        List<Reservation> reservations = reservationRepository
+                .findByDoctorIdAndReservationDateTimeBetween(doctorId, startOfDay, endOfDay);
+
+        // 이미 예약된 시간대만 추출
+        return reservations.stream()
+                .map(r -> r.getReservationDateTime().toLocalTime())
+                .toList();
     }
 }
