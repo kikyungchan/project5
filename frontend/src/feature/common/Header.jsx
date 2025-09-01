@@ -7,7 +7,7 @@ function Header() {
   const { user, logout } = useContext(AuthenticationContext);
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(null);
-  
+
   const handleReservationClick = () => {
     if (user) {
       navigate("/reservation");
@@ -24,9 +24,16 @@ function Header() {
   return (
     <header className="header">
       <div className="header-top">
-        <a href="/" className="logo">
-          병원 로고
-        </a>
+        <img
+          style={{
+            cursor: "pointer",
+            width: "80px",
+            height: "80px",
+          }}
+          onClick={() => navigate("/")}
+          src="../../../public/기경찬병원로고.png"
+        ></img>
+
         <div className="header-links">
           {user ? (
             <>
