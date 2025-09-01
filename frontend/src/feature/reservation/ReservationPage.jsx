@@ -31,7 +31,7 @@ export default function ReservationPage() {
       <h2>인터넷 진료예약</h2>
 
       <div className="reservation-body">
-        {/* 왼쪽 영역 */}
+        {/* 좌측: 진료과 + 의사목록 */}
         <div className="reservation-left">
           {/* 진료과 목록 */}
           <div className="dept-grid">
@@ -76,6 +76,29 @@ export default function ReservationPage() {
               </div>
             </div>
           )}
+        </div>
+
+        {/* 우측: 환자정보 + 달력 */}
+        <div className="reservation-right">
+          <div className="reservation-info">
+            <h3>예약하실 정보확인</h3>
+            <div className="info-row">
+              <span>환자명 :</span>
+              <b>{user ? user.name : "-"}</b>
+            </div>
+            <div className="info-row">
+              <span>병원/진료과 :</span>
+              <b>{selectedDept ? selectedDept.name : "-"}</b>
+            </div>
+            <div className="info-row">
+              <span>의료진 :</span>
+              <b>{selectedDoctor ? selectedDoctor.name : "-"}</b>
+            </div>
+            <div className="info-row">
+              <span>진료일시 :</span>
+              <b>{selectedDate ? selectedDate.toLocaleDateString() : "-"}</b>
+            </div>
+          </div>
 
           {/* 달력 */}
           {selectedDoctor && (
@@ -87,27 +110,6 @@ export default function ReservationPage() {
               />
             </div>
           )}
-        </div>
-
-        {/* 오른쪽 패널 */}
-        <div className="reservation-info">
-          <h3>예약하실 정보확인</h3>
-          <div className="info-row">
-            <span>환자명 : </span>
-            <b>{user ? user.name : "-"}</b>
-          </div>
-          <div className="info-row">
-            <span>병원/진료과 :</span>
-            <b>{selectedDept ? selectedDept.name : "-"}</b>
-          </div>
-          <div className="info-row">
-            <span>의료진 :</span>
-            <b>{selectedDoctor ? selectedDoctor.name : "-"}</b>
-          </div>
-          <div className="info-row">
-            <span>진료일시 :</span>
-            <b>{selectedDate ? selectedDate.toLocaleDateString() : "-"}</b>
-          </div>
         </div>
       </div>
     </div>
