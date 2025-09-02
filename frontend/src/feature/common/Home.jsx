@@ -12,6 +12,16 @@ function Home() {
     setUser(null);
     navigate("/");
   };
+
+  function handleReservation() {
+    if (user) {
+      navigate("/reservations");
+    } else {
+      alert("로그인이 필요한 시스템입니다.");
+      navigate("/login");
+    }
+  }
+
   return (
     <main className="container">
       <MainBanner />
@@ -20,7 +30,7 @@ function Home() {
         <div className="shortcut">
           <h3>진료예약</h3>
           <p>빠르고 쉽게 진료예약을 하실 수 있습니다.</p>
-          <button onClick={() => navigate("/reservation")}>진료예약</button>
+          <button onClick={handleReservation}>진료예약</button>
         </div>
         <div className="shortcut">
           <h3>진료과/센터</h3>
@@ -45,12 +55,10 @@ function Home() {
               오늘도 좋은 하루 보내시고 <b>건강을 기원</b>합니다.
             </p>
             <div className="action-buttons">
-              <button onClick={() => navigate("/reservation/check")}>
+              <button onClick={() => navigate("/reservationcheck")}>
                 예약확인/취소
               </button>
-              <button onClick={() => navigate("/medical/history")}>
-                진료이력조회
-              </button>
+              <button onClick={() => navigate("/history")}>진료이력조회</button>
             </div>
           </div>
         ) : (

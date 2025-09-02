@@ -139,7 +139,6 @@ export default function ReservationCheck() {
 
           {/* 이용안내 */}
           <h3 className="section-title">이용안내</h3>
-
           <h4 className="sub-title">1. 진료비 수납</h4>
           <p>
             진료·검사·치료 당일 받으신 후 가까운 수납창구에 방문해 주시면
@@ -147,7 +146,6 @@ export default function ReservationCheck() {
             <br />
             진료예약확인서에 표시된 경우는 수납/미수납 중 확인 가능합니다.
           </p>
-
           <h4 className="sub-title">2. 진료예약 취소</h4>
           <p>
             수납이력이 없는 진료만 취소 가능합니다.
@@ -195,9 +193,25 @@ export default function ReservationCheck() {
           <div className="side-box">
             <h4>자주 찾는 서비스</h4>
             <p>
-              <a href="/reservation">본원 진료예약</a>
+              <a
+                style={{
+                  color: "black",
+                  textDecoration: "none",
+                }}
+                href="/reservation"
+              >
+                본원 진료예약
+              </a>
               <br />
-              <a href="/reservationcheck">외래예약확인</a>
+              <a
+                style={{
+                  color: "black",
+                  textDecoration: "none",
+                }}
+                href="/reservationcheck"
+              >
+                외래예약확인
+              </a>
             </p>
           </div>
 
