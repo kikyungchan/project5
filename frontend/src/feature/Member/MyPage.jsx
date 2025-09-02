@@ -3,9 +3,10 @@ import "./MyPage.css";
 import { useNavigate } from "react-router";
 import { AuthenticationContext } from "../common/AuthenticationContextProvider.jsx";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function MyPage() {
-  const { user } = useContext(AuthenticationContext);
+  const { user, logout } = useContext(AuthenticationContext);
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -22,6 +23,29 @@ export default function MyPage() {
         setLoading(false);
       });
   }, [user]);
+
+  function handleDeleteMember() {
+    if (!window.confirm("정말 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다."))
+      return;
+
+    axios
+      .delete("/api/member/delete") // 파라미터 불필요, 토큰으로 본인 식별
+      .then((res) => {
+        const msg = res.data?.message?.text || "회원 탈퇴가 완료되었습니다.";
+        toast(msg, { type: "success" });
+
+        //  토큰/세션 제거(Authentication logout 사용)
+        logout();
+        //  홈으로 이동
+        navigate("/");
+      })
+      .catch((err) => {
+        const msg =
+          err.response?.data?.message?.text ||
+          "회원 탈퇴 중 오류가 발생했습니다.";
+        toast(msg, { type: "error" });
+      });
+  }
 
   return (
     <div className="mypage-container">
@@ -109,7 +133,9 @@ export default function MyPage() {
             <div className="card-body">
               회원 탈퇴를 원하시는 경우 아래 버튼을 눌러주세요.
               <br />
-              <button className="exit-btn">회원탈퇴</button>
+              <button onClick={handleDeleteMember} className="exit-btn">
+                회원탈퇴
+              </button>
             </div>
           </div>
         </div>

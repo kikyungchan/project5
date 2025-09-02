@@ -49,6 +49,7 @@ public class MemberController {
                         "text", "로그인 되었습니다.")));
     }
 
+    //회원정보불러오기
     @GetMapping(params = "loginId")
     @PreAuthorize("isAuthenticated() or hasAuthority('SCOPE_admin')")
     public ResponseEntity<?> getMemberByLoginId(String loginId, Authentication authentication) {
@@ -78,5 +79,15 @@ public class MemberController {
                     "message", Map.of("type", "error", "text", e.getMessage())
             ));
         }
+    }
+
+    @DeleteMapping("/delete")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> deleteMember(@org.springframework.security.core.annotation.AuthenticationPrincipal org.springframework.security.oauth2.jwt.Jwt jwt) {
+        String loginId = jwt.getSubject(); // 토큰 subject = 로그인 아이디
+        memberService.deleteMember(loginId);
+        return ResponseEntity.ok().body(Map.of(
+                "message", Map.of("type", "success", "text", "회원 탈퇴가 완료되었습니다.")
+        ));
     }
 }

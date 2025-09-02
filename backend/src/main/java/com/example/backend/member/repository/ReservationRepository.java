@@ -17,4 +17,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
     );
 
     List<Reservation> findByMemberLoginId(String memberId);
+
+    void deleteByMember_LoginId(String memberLoginId);
 }

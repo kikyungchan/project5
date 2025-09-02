@@ -8,6 +8,7 @@ import com.example.backend.member.entity.Auth;
 import com.example.backend.member.entity.Member;
 import com.example.backend.member.repository.AuthRepository;
 import com.example.backend.member.repository.MemberRepository;
+import com.example.backend.member.repository.ReservationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
@@ -30,6 +31,7 @@ public class MemberService {
     private final JwtEncoder jwtEncoder;
     private final PasswordEncoder passwordEncoder;
     private final AuthRepository authRepository;
+    private final ReservationRepository reservationRepository;
 
     public void add(MemberForm memberForm) {
         Member member = new Member();
@@ -106,5 +108,17 @@ public class MemberService {
         }
 
         memberRepository.save(member);
+    }
+
+    public void deleteMember(String memberLoginId) {
+        // 1) 본인 존재 확인
+        Member member = memberRepository.findById(memberLoginId)
+                .orElseThrow(() -> new RuntimeException("회원이 존재하지 않습니다."));
+
+        // 2) 자식(예약 등) 선삭제 — 하드 삭제 전략
+        reservationRepository.deleteByMember_LoginId(memberLoginId);
+
+        // 3) 회원 삭제
+        memberRepository.delete(member);
     }
 }
