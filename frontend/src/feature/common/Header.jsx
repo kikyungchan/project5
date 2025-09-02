@@ -36,6 +36,7 @@ function Header() {
                 onClick={() => {
                   logout();
                   toast.warning("로그아웃 되었습니다");
+                  navigate("/login");
                 }}
               >
                 로그아웃

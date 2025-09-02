@@ -7,11 +7,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 import { AuthenticationContext } from "../common/AuthenticationContextProvider.jsx";
-import { useNavigate } from "react-router";
+import { Link } from "react-router";
 
 export default function ReservationPage() {
   const { user } = useContext(AuthenticationContext);
-  const navigate = useNavigate();
   const [memo, setMemo] = useState("");
   const [departments, setDepartments] = useState([]);
   const [doctors, setDoctors] = useState([]);
@@ -159,9 +158,23 @@ export default function ReservationPage() {
               <span>진료일시 :</span>
               <b>{selectedDate ? selectedDate.toLocaleDateString() : "-"}</b>
             </div>
-            <div className="info-actions">
-              <button onClick={() => navigate(-1)}>최근예약</button>
-              <button onClick={() => navigate(-1)}>환자정보확인</button>
+            <div
+              className="info-actions d-flex"
+              style={{ justifyContent: "center" }}
+            >
+              <Link
+                style={{
+                  color: "white",
+                  textDecoration: "none",
+                  border: "1px solid white",
+                  padding: "0.3rem",
+                  width: "200px",
+                  textAlign: "center",
+                }}
+                to={"/reservationcheck"}
+              >
+                최근예약확인
+              </Link>
             </div>
           </div>
 
@@ -218,7 +231,7 @@ export default function ReservationPage() {
             </div>
             <div className="modal-body">
               <div className="alert alert-info">
-                정확히 선택하기 어려운 경우 예약센터(1588-5700)로 문의 후 예약해
+                정확히 선택하기 어려운 경우 예약센터(1234-1234)로 문의 후 예약해
                 주세요. <br />
                 <span className="text-danger">
                   진료 분야가 맞지 않게 예약된 경우, 진료를 받을 수 없습니다.
