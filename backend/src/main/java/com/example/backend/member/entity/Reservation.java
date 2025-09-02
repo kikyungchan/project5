@@ -23,9 +23,13 @@ public class Reservation {
     @JoinColumn(name = "member_login_id", nullable = false)
     private Member member;
 
+    @Column(length = 255)
+    private String memo;
+
     private LocalDateTime reservationDateTime;
 
     private String status = "BOOKED";
+
 
     private LocalDateTime createdAt = LocalDateTime.now();
 }

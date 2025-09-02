@@ -17,3 +17,7 @@ ALTER TABLE reservation
 
 DROP TABLE reservation;
 
+ALTER TABLE reservation
+    ADD COLUMN memo VARCHAR(255) NULL;
+
+

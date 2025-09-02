@@ -10,6 +10,7 @@ import { AuthenticationContext } from "../common/AuthenticationContextProvider.j
 
 export default function ReservationPage() {
   const { user } = useContext(AuthenticationContext);
+  const [memo, setMemo] = useState("");
   const [departments, setDepartments] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [selectedDept, setSelectedDept] = useState(null);
@@ -61,17 +62,19 @@ export default function ReservationPage() {
           doctorId: selectedDoctor.id,
           memberId: user.loginId,
           dateTime: dateTime,
+          memo: memo,
         },
       })
       .then((res) => {
         alert("예약이 완료되었습니다.");
+        setMemo("");
         return axios.get("/api/available", {
           params: { doctorId: selectedDoctor.id, date: dateStr },
         });
       })
       .then((res) => {
         setReservedTimes(res.data.reservedTimes);
-        setSelectedTime(null); // 선택했던 시간 초기화해주는 게 UX적으로 좋음
+        setSelectedTime(null); // 선택했던 시간 초기화
       })
       .catch((err) => {
         if (err.response && err.response.data.message) {
@@ -236,6 +239,8 @@ export default function ReservationPage() {
                 placeholder="진단내용을 간략히 입력해주세요."
                 maxLength={25}
                 className="form-control"
+                value={memo}
+                onChange={(e) => setMemo(e.target.value)}
               ></textarea>
             </div>
             <div className="modal-footer">
@@ -252,7 +257,7 @@ export default function ReservationPage() {
                 data-bs-dismiss="modal"
                 onClick={handleReservationButton}
               >
-                확인
+                예약하기
               </button>
             </div>
           </div>

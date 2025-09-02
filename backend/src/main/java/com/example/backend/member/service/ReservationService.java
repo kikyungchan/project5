@@ -23,7 +23,7 @@ public class ReservationService {
     private final DoctorRepository doctorRepository;
     private final MemberRepository memberRepository;
 
-    public Reservation createReservation(Integer doctorId, String memberId, LocalDateTime reservationDateTime) {
+    public Reservation createReservation(Integer doctorId, String memberId, LocalDateTime reservationDateTime, String memo) {
         boolean exists = reservationRepository.existsByDoctorIdAndReservationDateTime(doctorId, reservationDateTime);
         if (exists) {
             throw new RuntimeException("예약 불가능한 시간입니다.");
@@ -35,6 +35,7 @@ public class ReservationService {
         reservation.setDoctor(doctor);
         reservation.setMember(member);
         reservation.setReservationDateTime(reservationDateTime);
+        reservation.setMemo(memo);
         return reservationRepository.save(reservation);
     }
 

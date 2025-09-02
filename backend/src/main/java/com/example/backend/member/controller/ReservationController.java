@@ -51,10 +51,11 @@ public class ReservationController {
     @PostMapping("/reservation")
     public Reservation reserve(@RequestParam Integer doctorId,
                                @RequestParam String memberId,
-                               @RequestParam String dateTime // "2025-09-02T10:00"
+                               @RequestParam String dateTime, // "2025-09-02T10:00"
+                               @RequestParam String memo
     ) {
         LocalDateTime reservationDateTime = LocalDateTime.parse(dateTime);
-        return reservationService.createReservation(doctorId, memberId, reservationDateTime);
+        return reservationService.createReservation(doctorId, memberId, reservationDateTime, memo);
     }
 
     @GetMapping("/available")
@@ -73,7 +74,7 @@ public class ReservationController {
                 .map(t -> t.format(formatter))
                 .toList();
 
-        // 병원 기본 예약 가능 시간 (예시: 09:00~16:00, 점심 12:00 제외)
+        // 병원 기본 예약 가능 시간  점심시간 1시간 제외
         List<String> allTimeSlots = List.of("09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00");
 
         // 예약 불가능한 시간 제외
