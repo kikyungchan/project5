@@ -7,6 +7,7 @@ import com.example.backend.member.entity.Doctor;
 import com.example.backend.member.entity.Reservation;
 import com.example.backend.member.repository.DepartmentRepository;
 import com.example.backend.member.repository.DoctorRepository;
+import com.example.backend.member.repository.ReservationRepository;
 import com.example.backend.member.service.ReservationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,7 @@ public class ReservationController {
     private final DepartmentRepository departmentRepository;
     private final DoctorRepository doctorRepository;
     private final ReservationService reservationService;
+    private final ReservationRepository reservationRepository;
 
     @GetMapping("/departments")
     public List<DepartmentDto> getDepartments() {
@@ -89,5 +91,10 @@ public class ReservationController {
         response.put("reservedTimes", reservedTimeStrings);
 
         return response;
+    }
+
+    @GetMapping("/check")
+    public List<Reservation> getReservations(@RequestParam(required = false) String memberId) {
+        return reservationRepository.findByMemberLoginId(memberId);
     }
 }

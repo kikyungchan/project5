@@ -1,7 +1,9 @@
 import React from "react";
 import "./MyPage.css";
+import { useNavigate } from "react-router";
 
 export default function MyPage() {
+  const navigate = useNavigate();
   return (
     <div className="mypage-container">
       <h2 className="mypage-title">마이페이지</h2>
@@ -13,7 +15,12 @@ export default function MyPage() {
           <div className="mypage-card">
             <div className="card-header">
               <span>진료예약확인</span>
-              <button className="card-toggle">＋</button>
+              <button
+                className="card-toggle"
+                onClick={() => navigate("/reservationcheck")}
+              >
+                ＋
+              </button>
             </div>
             <div className="card-body">조회 가능한 진료예약이 없습니다.</div>
           </div>
@@ -64,7 +71,7 @@ export default function MyPage() {
                 <a href="/receipt">회원정보보수정</a>
               </li>
               <li>
-                <a href="/check">외래예약확인</a>
+                <a href="/reservationcheck">외래예약확인</a>
               </li>
             </ul>
           </div>
@@ -81,7 +88,7 @@ export default function MyPage() {
               <br />
               <a
                 style={{ textDecoration: "none", color: "black" }}
-                href="/outpatient"
+                href="/reservationcheck"
               >
                 외래예약확인
               </a>

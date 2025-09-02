@@ -15,4 +15,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
             LocalDateTime startOfDay,
             LocalDateTime endOfDay
     );
+
+    List<Reservation> findByMemberLoginId(String memberId);
 }

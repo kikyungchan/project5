@@ -1,0 +1,149 @@
+.page-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.page-content {
+    display: flex;
+    gap: 40px;
+}
+
+/* 좌측 메인 */
+.page-main {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.empty-text {
+    color: #555;
+    font-size: 14px;
+}
+
+.desc-text {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.text-danger {
+    color: red;
+}
+
+/* 안내 박스 */
+.notice-box {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+.notice-box h4 {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #1b64da;
+}
+
+.notice-box p {
+    margin-bottom: 6px;
+}
+
+.notice-box a {
+    color: #1b64da;
+    text-decoration: none;
+}
+
+/* 우측 사이드 */
+.page-side {
+    flex: 1;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.side-box {
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 20px;
+}
+
+.side-box h4 {
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.side-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-box ul li {
+    margin-bottom: 6px;
+}
+
+.side-box ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.side-box ul li a:hover {
+    color: #1b64da;
+}
+
+.call-box {
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
+.sub-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    color: #000;
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.reservation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.reservation-table th,
+.reservation-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.reservation-table th {
+    background: #f8f9fa;
+    font-weight: bold;
+}
+
