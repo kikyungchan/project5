@@ -60,6 +60,16 @@
     cursor: pointer;
 }
 
+.exit-btn {
+    margin-top: 10px;
+    padding: 6px 12px;
+    border: 1px solid #bd212e;
+    background: #fff;
+    color: #bd212e;
+    font-size: 14px;
+    cursor: pointer;
+}
+
 .edit-btn:hover {
     background: #1b64da;
     color: #fff;

@@ -17,6 +17,21 @@ export default function ReservationCheck() {
       })
       .catch((err) => {});
   }, [user]);
+
+  function handleCancel(id) {
+    if (!window.confirm("정말 취소하시겠습니까?")) return;
+
+    axios
+      .delete(`/api/reservation/${id}`, { params: { memberId: user?.loginId } })
+      .then(() => {
+        setReservations((prev) => prev.filter((r) => r.id !== id)); // 화면 즉시 갱신
+        alert("예약이 취소되었습니다.");
+      })
+      .catch((err) => {
+        alert(err.response?.data?.message || "취소 중 오류가 발생했습니다.");
+      });
+  }
+
   return (
     <div className="page-container">
       <h2 className="page-title">진료예약확인</h2>
@@ -33,23 +48,30 @@ export default function ReservationCheck() {
             <table className="reservation-table">
               <thead>
                 <tr>
-                  <th>예약번호</th>
                   <th>진료과</th>
                   <th>의료진</th>
                   <th>예약일시</th>
                   <th>메모</th>
+                  <th>취소</th>
                 </tr>
               </thead>
               <tbody>
                 {reservations.map((r) => (
                   <tr key={r.id}>
-                    <td>{r.id}</td>
                     <td>{r.doctor.department.name}</td>
                     <td>{r.doctor.name}</td>
                     <td>
                       {new Date(r.reservationDateTime).toLocaleString("ko-KR")}
                     </td>
                     <td>{r.memo || "-"}</td>
+                    <td>
+                      <button
+                        className="cancel-btn"
+                        onClick={() => handleCancel(r.id)}
+                      >
+                        취소
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>

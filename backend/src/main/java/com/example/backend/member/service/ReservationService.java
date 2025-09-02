@@ -51,4 +51,9 @@ public class ReservationService {
                 .map(r -> r.getReservationDateTime().toLocalTime())
                 .toList();
     }
+
+    public void cancelReservation(Integer id, String memberId) {
+        Reservation r = reservationRepository.findById(id).get();
+        reservationRepository.delete(r);
+    }
 }

@@ -88,7 +88,7 @@ function Header() {
                 )}
               </li>
               <li>
-                <a href="/check">예약확인/취소</a>
+                <a href="/reservationcheck">예약확인/취소</a>
               </li>
               <li>
                 <a href="/dept">진료과/의료진</a>

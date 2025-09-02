@@ -97,4 +97,10 @@ public class ReservationController {
     public List<Reservation> getReservations(@RequestParam(required = false) String memberId) {
         return reservationRepository.findByMemberLoginId(memberId);
     }
+
+    @DeleteMapping("/reservation/{id}")
+    public void cancelReservation(@PathVariable Integer id,
+                                  @RequestParam String memberId) {
+        reservationService.cancelReservation(id, memberId);
+    }
 }
