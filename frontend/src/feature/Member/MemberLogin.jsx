@@ -46,7 +46,7 @@ export function MemberLogin() {
   }
 
   return (
-    <Row className="justify-content-center">
+    <Row className="justify-content-center mt-4">
       <Col xs={12} md={8} lg={6} xl={3}>
         <h2>로그인</h2>
         <Form onSubmit={handleLogInButtonClick}>
