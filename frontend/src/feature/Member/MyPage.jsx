@@ -95,7 +95,9 @@ export default function MyPage() {
             <div className="card-body">
               회원정보 수정 및 비밀번호 변경은 아래 버튼을 눌러주세요.
               <br />
-              <button className="edit-btn">회원정보 수정</button>
+              <button onClick={() => navigate("/edit")} className="edit-btn">
+                회원정보 수정
+              </button>
             </div>
           </div>
 

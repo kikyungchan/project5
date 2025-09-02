@@ -3,6 +3,7 @@ package com.example.backend.member.service;
 import com.example.backend.member.dto.MemberDto;
 import com.example.backend.member.dto.MemberForm;
 import com.example.backend.member.dto.MemberLoginForm;
+import com.example.backend.member.dto.MemberUpdateForm;
 import com.example.backend.member.entity.Auth;
 import com.example.backend.member.entity.Member;
 import com.example.backend.member.repository.AuthRepository;
@@ -77,7 +78,33 @@ public class MemberService {
         MemberDto memberDto = new MemberDto();
         memberDto.setLoginId(member.getLoginId());
         memberDto.setName(member.getName());
+        memberDto.setEmail(member.getEmail());
+        memberDto.setPhone(member.getPhone());
+        memberDto.setGender(member.getGender());
 
         return memberDto;
+    }
+
+    public void update(MemberUpdateForm form) {
+        Member member = memberRepository.findById(form.getLoginId()).get();
+
+        if (form.getPassword() != null && !form.getPassword().isBlank()) {
+            // 암호화 넣을거면 passwordEncoder.encode() 사용
+            member.setPassword(form.getPassword());
+        }
+        if (form.getName() != null && !form.getName().isBlank()) {
+            member.setName(form.getName());
+        }
+        if (form.getPhone() != null && !form.getPhone().isBlank()) {
+            member.setPhone(form.getPhone());
+        }
+        if (form.getEmail() != null && !form.getEmail().isBlank()) {
+            member.setEmail(form.getEmail());
+        }
+        if (form.getGender() != null && !form.getGender().isBlank()) {
+            member.setGender(form.getGender());
+        }
+
+        memberRepository.save(member);
     }
 }

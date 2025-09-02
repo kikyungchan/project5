@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 public class MemberDto {
     private String loginId;
     private String name;
+    private String email;
+    private String phone;
+    private String gender;
     private LocalDateTime insertedAt;
 
 }

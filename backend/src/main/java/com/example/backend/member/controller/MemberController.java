@@ -2,6 +2,7 @@ package com.example.backend.member.controller;
 
 import com.example.backend.member.dto.MemberForm;
 import com.example.backend.member.dto.MemberLoginForm;
+import com.example.backend.member.dto.MemberUpdateForm;
 import com.example.backend.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -56,6 +57,26 @@ public class MemberController {
             return ResponseEntity.ok().body(memberService.getByLoginId(loginId));
         } else {
             return ResponseEntity.status(403).build();
+        }
+    }
+
+    @PutMapping("/update")
+    @PreAuthorize("isAuthenticated() or hasAuthority('SCOPE_admin')")
+    public ResponseEntity<?> updateMember(@RequestBody MemberUpdateForm form, Authentication authentication) {
+        if (!authentication.getName().equals(form.getLoginId()) &&
+            !authentication.getAuthorities().contains(new SimpleGrantedAuthority("SCOPE_admin"))) {
+            return ResponseEntity.status(403).build();
+        }
+
+        try {
+            memberService.update(form);
+            return ResponseEntity.ok().body(Map.of(
+                    "message", Map.of("type", "success", "text", "회원 정보가 수정되었습니다.")
+            ));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of(
+                    "message", Map.of("type", "error", "text", e.getMessage())
+            ));
         }
     }
 }
