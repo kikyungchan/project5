@@ -1,17 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./css/Header.css";
 import { AuthenticationContext } from "./AuthenticationContextProvider.jsx";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 function Header() {
   const { user, logout } = useContext(AuthenticationContext);
   const navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(null);
-
-  const handleLogout = () => {
-    logout();
-    navigate("/");
-  };
 
   return (
     <header className="header">
@@ -29,8 +25,21 @@ function Header() {
         <div className="header-links">
           {user ? (
             <>
-              <span>{user.name}님</span>
-              <button onClick={handleLogout}>로그아웃</button>
+              <span
+                style={{ cursor: "pointer" }}
+                onClick={() => navigate("/mypage")}
+              >
+                {user.name}님
+              </span>
+              <button
+                className="header-links-style"
+                onClick={() => {
+                  logout();
+                  toast.warning("로그아웃 되었습니다");
+                }}
+              >
+                로그아웃
+              </button>
             </>
           ) : (
             <>

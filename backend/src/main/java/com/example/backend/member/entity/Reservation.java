@@ -28,8 +28,5 @@ public class Reservation {
 
     private LocalDateTime reservationDateTime;
 
-    private String status = "BOOKED";
-
-
     private LocalDateTime createdAt = LocalDateTime.now();
 }

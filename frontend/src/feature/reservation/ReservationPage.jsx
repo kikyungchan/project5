@@ -7,9 +7,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 import { AuthenticationContext } from "../common/AuthenticationContextProvider.jsx";
+import { useNavigate } from "react-router";
 
 export default function ReservationPage() {
   const { user } = useContext(AuthenticationContext);
+  const navigate = useNavigate();
   const [memo, setMemo] = useState("");
   const [departments, setDepartments] = useState([]);
   const [doctors, setDoctors] = useState([]);
@@ -157,6 +159,10 @@ export default function ReservationPage() {
               <span>진료일시 :</span>
               <b>{selectedDate ? selectedDate.toLocaleDateString() : "-"}</b>
             </div>
+            <div className="info-actions">
+              <button onClick={() => navigate(-1)}>최근예약</button>
+              <button onClick={() => navigate(-1)}>환자정보확인</button>
+            </div>
           </div>
 
           {/* 달력 */}
@@ -187,16 +193,6 @@ export default function ReservationPage() {
                   </div>
                 </div>
               )}
-
-              {/* 예약 확정 버튼 */}
-              {/*{selectedDate && selectedTime && (*/}
-              {/*  <button*/}
-              {/*    className="confirm-btn"*/}
-              {/*    onClick={handleReservationButton}*/}
-              {/*  >*/}
-              {/*    예약 확정하기*/}
-              {/*  </button>*/}
-              {/*)}*/}
             </div>
           )}
         </div>

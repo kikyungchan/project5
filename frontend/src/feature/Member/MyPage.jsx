@@ -1,0 +1,101 @@
+import React from "react";
+import "./MyPage.css";
+
+export default function MyPage() {
+  return (
+    <div className="mypage-container">
+      <h2 className="mypage-title">마이페이지</h2>
+
+      <div className="mypage-content">
+        {/* 좌측 메인 카드 영역 */}
+        <div className="mypage-main">
+          {/* 진료예약확인 */}
+          <div className="mypage-card">
+            <div className="card-header">
+              <span>진료예약확인</span>
+              <button className="card-toggle">＋</button>
+            </div>
+            <div className="card-body">조회 가능한 진료예약이 없습니다.</div>
+          </div>
+
+          {/* 최근 진료이력조회 */}
+          <div className="mypage-card">
+            <div className="card-header">
+              <span>최근 진료이력조회</span>
+              <button className="card-toggle">＋</button>
+            </div>
+            <div className="card-body">
+              최근 1년간 수진이력이 존재하지 않습니다.
+            </div>
+          </div>
+
+          {/* 회원정보수정 */}
+          <div className="mypage-card">
+            <div className="card-header">
+              <span>회원정보수정</span>
+            </div>
+            <div className="card-body">
+              회원정보 수정 및 비밀번호 변경은 아래 버튼을 눌러주세요.
+              <br />
+              <button className="edit-btn">회원정보 수정</button>
+            </div>
+          </div>
+
+          {/* 회원탈퇴 */}
+          <div className="mypage-card">
+            <div className="card-header">
+              <span>회원탈퇴</span>
+            </div>
+            <div className="card-body">
+              회원 탈퇴를 원하시는 경우 아래 버튼을 눌러주세요.
+            </div>
+          </div>
+        </div>
+
+        {/* 우측 사이드 메뉴 */}
+        <aside className="mypage-side">
+          <div className="side-box">
+            <h4>관련 콘텐츠</h4>
+            <ul>
+              <li>
+                <a href="/cancel">진료예약취소</a>
+              </li>
+              <li>
+                <a href="/receipt">회원정보보수정</a>
+              </li>
+              <li>
+                <a href="/check">외래예약확인</a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="side-box">
+            <h4>자주 찾는 서비스</h4>
+            <p>
+              <a
+                style={{ textDecoration: "none", color: "black" }}
+                href="/reservation"
+              >
+                본원 진료예약
+              </a>
+              <br />
+              <a
+                style={{ textDecoration: "none", color: "black" }}
+                href="/outpatient"
+              >
+                외래예약확인
+              </a>
+            </p>
+          </div>
+
+          <div className="side-box">
+            <h4>대표전화</h4>
+            <div className="call-box">
+              <strong>1234-1234</strong>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  );
+}

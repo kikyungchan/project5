@@ -20,4 +20,7 @@ DROP TABLE reservation;
 ALTER TABLE reservation
     ADD COLUMN memo VARCHAR(255) NULL;
 
+ALTER TABLE reservation
+    DROP COLUMN status;
+
 
