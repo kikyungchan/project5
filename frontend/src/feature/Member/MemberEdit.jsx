@@ -80,7 +80,7 @@ export function MemberEdit() {
   }
 
   return (
-    <Row className="justify-content-center">
+    <Row className="justify-content-center mt-4">
       <Col xs={12} md={8} lg={6} xl={3}>
         <h2 className="mb-4">회원 정보 수정</h2>
 

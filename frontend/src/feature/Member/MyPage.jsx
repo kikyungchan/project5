@@ -29,7 +29,7 @@ export default function MyPage() {
       return;
 
     axios
-      .delete("/api/member/delete") // 파라미터 불필요, 토큰으로 본인 식별
+      .delete("/api/member/delete")
       .then((res) => {
         const msg = res.data?.message?.text || "회원 탈퇴가 완료되었습니다.";
         toast(msg, { type: "success" });
@@ -149,7 +149,7 @@ export default function MyPage() {
                 <a href="/cancel">진료예약취소</a>
               </li>
               <li>
-                <a href="/receipt">회원정보보수정</a>
+                <a href="/edit">회원정보보수정</a>
               </li>
               <li>
                 <a href="/reservationcheck">외래예약확인</a>
