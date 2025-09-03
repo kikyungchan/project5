@@ -121,6 +121,7 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 
@@ -134,6 +135,12 @@ html {
 
 .doctor-name {
     font-weight: bold;
+}
+
+.doctor-card-header {
+    position: absolute;
+    top: 8px;
+    right: 8px;
 }
 
 .reserve-btn.active {
@@ -217,3 +224,14 @@ html {
     cursor: not-allowed;
 }
 
+.info-btn {
+    background: #f1f1f1;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 28px;
+    text-align: center;
+}

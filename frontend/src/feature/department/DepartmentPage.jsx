@@ -1,9 +1,9 @@
-import "../common/css/Department.css";
+import "./unit/Department.css";
 import { useState } from "react";
-import { departmentKeywords } from "./departmentKeyords.js";
+import { departmentKeywords } from "./unit/departmentKeyords.js";
 import axios from "axios";
-import { departmentMapping } from "./departmentMapping.js";
-import { doctorExtraInfo } from "./doctorExtraInfo.js";
+import { departmentMapping } from "./unit/departmentMapping.js";
+import { doctorExtraInfo } from "./unit/doctorExtraInfo.js";
 
 export default function DepartmentPage() {
   const [query, setQuery] = useState("");

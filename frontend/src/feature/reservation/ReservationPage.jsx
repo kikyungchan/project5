@@ -5,11 +5,12 @@ import "react-calendar/dist/Calendar.css";
 import "./Reservation.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-
+import { doctorExtraInfo } from "../department/unit/doctorExtraInfo.js";
 import { AuthenticationContext } from "../common/AuthenticationContextProvider.jsx";
 import { Link, useNavigate } from "react-router";
 
 export default function ReservationPage() {
+  const [selectedDoctorForInfo, setSelectedDoctorForInfo] = useState(null);
   const navigate = useNavigate();
   const { user } = useContext(AuthenticationContext);
   const [memo, setMemo] = useState("");
@@ -88,6 +89,10 @@ export default function ReservationPage() {
       });
   }
 
+  const handleShowDoctorInfo = (doc) => {
+    setSelectedDoctorForInfo(doc);
+  };
+
   return (
     <div className="reservation-container">
       <h2 className="reservation-title">인터넷 진료예약</h2>
@@ -115,6 +120,16 @@ export default function ReservationPage() {
               <div className="doctor-grid">
                 {doctors.map((doc) => (
                   <div key={doc.id} className="doctor-card">
+                    <div className="doctor-card-header">
+                      <button
+                        className="info-btn"
+                        data-bs-toggle="modal"
+                        data-bs-target="#doctorInfoModal"
+                        onClick={() => handleShowDoctorInfo(doc)}
+                      >
+                        🔍
+                      </button>
+                    </div>
                     <img
                       src={
                         doc.thumbnailUrl && doc.thumbnailUrl.trim() !== ""
@@ -270,6 +285,71 @@ export default function ReservationPage() {
               >
                 예약하기
               </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* 의사 정보 모달 */}
+      <div
+        className="modal fade"
+        id="doctorInfoModal"
+        tabIndex="-1"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-lg modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">의료진 정보</h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+              ></button>
+            </div>
+            <div className="modal-body">
+              {selectedDoctorForInfo ? (
+                <>
+                  <div className="d-flex gap-3 align-items-center">
+                    <img
+                      src={
+                        selectedDoctorForInfo.thumbnailUrl &&
+                        selectedDoctorForInfo.thumbnailUrl.trim() !== ""
+                          ? selectedDoctorForInfo.thumbnailUrl
+                          : "../의사기본썸넬.jpg"
+                      }
+                      alt={selectedDoctorForInfo.name}
+                      style={{
+                        width: "120px",
+                        height: "120px",
+                        borderRadius: "50%",
+                        objectFit: "cover",
+                      }}
+                    />
+                    <div>
+                      <h4>{selectedDoctorForInfo.name}</h4>
+                      <p>{selectedDoctorForInfo.position}</p>
+                    </div>
+                  </div>
+                  <hr />
+                  <h5>학력/경력</h5>
+                  <p>
+                    {doctorExtraInfo[selectedDoctorForInfo.id]?.education ||
+                      "정보 없음"}
+                  </p>
+                  <p>
+                    {doctorExtraInfo[selectedDoctorForInfo.id]?.career ||
+                      "정보 없음"}
+                  </p>
+                  <hr />
+                  <h5>논문</h5>
+                  <p>
+                    {doctorExtraInfo[selectedDoctorForInfo.id]?.papers ||
+                      "등록된 논문 정보가 없습니다."}
+                  </p>
+                </>
+              ) : (
+                <p>의료진 정보를 불러오는 중입니다...</p>
+              )}
             </div>
           </div>
         </div>

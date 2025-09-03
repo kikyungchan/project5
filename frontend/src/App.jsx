@@ -1,16 +1,16 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import { MemberAdd } from "./feature/Member/MemberAdd.jsx";
-import { MemberLogin } from "./feature/Member/MemberLogin.jsx";
-import { MemberEdit } from "./feature/Member/MemberEdit.jsx";
+import { MemberAdd } from "./feature/member/MemberAdd.jsx";
+import { MemberLogin } from "./feature/member/MemberLogin.jsx";
+import { MemberEdit } from "./feature/member/MemberEdit.jsx";
 import React from "react";
 import Home from "./feature/common/Home.jsx";
-import MyPage from "./feature/Member/MyPage.jsx";
+import MyPage from "./feature/member/MyPage.jsx";
 import Header from "./feature/common/Header.jsx";
 import Footer from "./feature/common/Footer.jsx";
 import ReservationPage from "./feature/reservation/ReservationPage.jsx";
 import ReservationCheck from "./feature/reservation/ReservationCheck.jsx";
 import { AuthenticationContextProvider } from "./feature/common/AuthenticationContextProvider.jsx";
-import DepartmentPage from "./feature/common/DepartmentPage.jsx";
+import DepartmentPage from "./feature/department/DepartmentPage.jsx";
 
 function App() {
   return (
