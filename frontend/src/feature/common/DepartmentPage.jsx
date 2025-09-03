@@ -166,7 +166,7 @@ export default function DepartmentPage() {
         <div className="side-box">
           <h4>대표전화</h4>
           <div className="call-box">
-            <strong>1588-5700</strong>
+            <strong>1234-1234</strong>
           </div>
         </div>
       </aside>
