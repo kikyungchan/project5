@@ -8,6 +8,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { doctorExtraInfo } from "../department/unit/doctorExtraInfo.js";
 import { AuthenticationContext } from "../common/AuthenticationContextProvider.jsx";
 import { Link, useNavigate } from "react-router";
+import { FiSearch } from "react-icons/fi";
 
 export default function ReservationPage() {
   const [selectedDoctorForInfo, setSelectedDoctorForInfo] = useState(null);
@@ -127,7 +128,7 @@ export default function ReservationPage() {
                         data-bs-target="#doctorInfoModal"
                         onClick={() => handleShowDoctorInfo(doc)}
                       >
-                        🔍
+                        <FiSearch size={19} />
                       </button>
                     </div>
                     <img
