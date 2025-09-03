@@ -26,16 +26,17 @@ function Header() {
           {user ? (
             <>
               <span
+                className="header-mypage"
                 style={{ cursor: "pointer" }}
                 onClick={() => navigate("/mypage")}
               >
-                {user.name}님
+                마이페이지
               </span>
               <button
                 className="header-links-style"
                 onClick={() => {
                   logout();
-                  toast.warning("로그아웃 되었습니다");
+                  toast.warning("로그아웃 되었습니다", { autoClose: 3000 });
                   navigate("/login");
                 }}
               >

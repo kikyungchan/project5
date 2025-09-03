@@ -57,7 +57,7 @@ export function MemberEdit() {
       .then((res) => {
         const message = res.data.message;
         if (message) {
-          toast(message.text, { type: message.type });
+          toast(message.text, { type: message.type, autoClose: 3000 });
         } else {
           toast("회원 정보가 수정되었습니다.", { type: "success" });
         }

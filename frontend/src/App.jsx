@@ -10,6 +10,7 @@ import Footer from "./feature/common/Footer.jsx";
 import ReservationPage from "./feature/reservation/ReservationPage.jsx";
 import ReservationCheck from "./feature/reservation/ReservationCheck.jsx";
 import { AuthenticationContextProvider } from "./feature/common/AuthenticationContextProvider.jsx";
+import DepartmentPage from "./feature/common/DepartmentPage.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="mypage" element={<MyPage />} />
           <Route path="reservation" element={<ReservationPage />} />
           <Route path="reservationcheck" element={<ReservationCheck />} />
+          <Route path="dept" element={<DepartmentPage />} />
           <Route path="signup" element={<MemberAdd />} />
           <Route path="login" element={<MemberLogin />} />
           <Route path="edit" element={<MemberEdit />} />

@@ -29,7 +29,7 @@ export function MemberLogin() {
 
         const message = res.data.message;
         if (message) {
-          toast(message.text, { type: message.type });
+          toast(message.text, { type: message.type, autoClose: 3000 });
         }
 
         navigate("/");

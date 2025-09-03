@@ -15,6 +15,15 @@
     margin-left: 200px;
 }
 
+.header-mypage {
+    margin-right: 15px;
+}
+
+.header-mypage:hover,
+.header-links-style:hover {
+    color: #1b64da;
+}
+
 .header-links-style {
     background: none;
     border: none;

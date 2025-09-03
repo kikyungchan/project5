@@ -1,15 +1,16 @@
 .mypage-container {
     max-width: 1200px;
-    margin: 40px auto;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
 .mypage-title {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 .mypage-content {

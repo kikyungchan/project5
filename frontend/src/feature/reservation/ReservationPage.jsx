@@ -7,9 +7,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 import { AuthenticationContext } from "../common/AuthenticationContextProvider.jsx";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export default function ReservationPage() {
+  const navigate = useNavigate();
   const { user } = useContext(AuthenticationContext);
   const [memo, setMemo] = useState("");
   const [departments, setDepartments] = useState([]);
@@ -76,6 +77,7 @@ export default function ReservationPage() {
       .then((res) => {
         setReservedTimes(res.data.reservedTimes);
         setSelectedTime(null); // 선택했던 시간 초기화
+        navigate("/reservationcheck");
       })
       .catch((err) => {
         if (err.response && err.response.data.message) {
@@ -88,7 +90,7 @@ export default function ReservationPage() {
 
   return (
     <div className="reservation-container">
-      <h2>인터넷 진료예약</h2>
+      <h2 className="reservation-title">인터넷 진료예약</h2>
 
       <div className="reservation-body">
         {/* 좌측: 진료과 + 의사목록 */}

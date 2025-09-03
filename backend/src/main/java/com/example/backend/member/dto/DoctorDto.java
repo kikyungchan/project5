@@ -21,4 +21,11 @@ public class DoctorDto {
         this.ThumbnailUrl = doctor.getThumbnailUrl();
     }
 
+    public DoctorDto(Integer id, String name) {
+    }
+
+    public static DoctorDto fromEntity(Doctor doctor) {
+        return new DoctorDto(doctor.getId(), doctor.getName());
+    }
+
 }

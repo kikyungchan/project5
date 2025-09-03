@@ -33,7 +33,7 @@ export default function ReservationCheck() {
   }
 
   return (
-    <div className="page-container">
+    <div className="reservation-check-container">
       <h2 className="page-title">진료예약확인</h2>
 
       <div className="page-content">

@@ -1,0 +1,169 @@
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row; /* 좌우 배치 */
+    gap: 20px;
+    align-items: flex-start; /* 위쪽 기준 정렬 (사이드 높이 차이 대비) */
+}
+
+.main-content {
+    flex: 3;
+    background: #fff;
+    /*border: 1px solid #ddd;*/
+    border-radius: 10px;
+}
+
+.side-box {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* 검색바 */
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.search-btn,
+.reset-btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.search-btn {
+    background: #1b64da;
+    color: #fff;
+}
+
+.reset-btn {
+    background: #f1f1f1;
+}
+
+/* 진료과 그리드 */
+.department-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.department-grid button {
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.department-grid button:hover {
+    border-color: #1b64da;
+    color: #1b64da;
+}
+
+
+/* 우측 사이드 */
+.department-side {
+    flex: 1;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 사이드 박스 공통 스타일 */
+.side-box {
+    border: 1px solid #ddd;
+    background: #fff;
+    width: 220px;
+    padding: 20px;
+}
+
+.side-box h4 {
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.side-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-box ul li {
+    margin-bottom: 6px;
+}
+
+.side-box ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.side-box ul li a:hover {
+    color: #1b64da;
+}
+
+.call-box {
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.doctor-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.doctor-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 카드 2개씩 */
+    gap: 20px;
+}
+
+.doctor-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    padding: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.doctor-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 8px;
+}
+
+.doctor-name {
+    font-weight: bold;
+}
+
+.doctor-position {
+    color: #666;
+    font-size: 14px;
+}
+
+
