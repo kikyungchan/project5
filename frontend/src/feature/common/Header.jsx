@@ -13,21 +13,17 @@ function Header() {
     <header className="header">
       <div className="header-top">
         <img
-          style={{
-            cursor: "pointer",
-            width: "80px",
-            height: "80px",
-          }}
+          className="header-logo"
           onClick={() => navigate("/")}
-          src="../../../public/기경찬병원로고.png"
-        ></img>
+          src="/기경찬병원로고.png"
+          alt="병원 로고"
+        />
 
         <div className="header-links">
           {user ? (
             <>
               <span
                 className="header-mypage"
-                style={{ cursor: "pointer" }}
                 onClick={() => navigate("/mypage")}
               >
                 마이페이지
@@ -51,6 +47,7 @@ function Header() {
           )}
         </div>
       </div>
+
       {/* 네비게이션 전체 hover 영역으로  */}
       <nav className="header-nav" onMouseLeave={() => setOpenMenu(null)}>
         <ul className="header-menu">

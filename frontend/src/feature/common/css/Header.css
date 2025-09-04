@@ -8,11 +8,17 @@
     justify-content: center;
     align-items: center;
     padding: 15px 40px;
-    margin-left: 200px;
+    max-width: 1200px; /* 헤더 전체 폭 제한 */
+    margin: 0 auto;
 }
 
 .header-links {
-    margin-left: 200px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 15px; /* 마이페이지 - 로그아웃 간격 */
+    right: 500px;
+
 }
 
 .header-mypage {
@@ -28,16 +34,16 @@
     background: none;
     border: none;
     padding: 0;
-    color: inherit; /* 상위 글씨 색상 따라감 */
-    font: inherit; /* 상위 폰트 따라감 */
+    color: inherit;
+    font: inherit;
     cursor: pointer;
 }
 
-.logo {
-    font-size: 20px;
-    font-weight: bold;
-    color: #1b64da;
-    text-decoration: none;
+.header-logo {
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto; /* 가운데 배치 */
 }
 
 .header-links a {
