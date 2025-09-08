@@ -35,7 +35,7 @@ function Home() {
         <div className="shortcut">
           <h3>진료과/센터</h3>
           <p>병원의 진료과 / 센터를 확인할 수 있습니다.</p>
-          <button>진료과 보기</button>
+          <button onClick={() => navigate("/dept")}>진료과 보기</button>
         </div>
         <div className="shortcut">
           <h3>진료안내</h3>

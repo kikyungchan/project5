@@ -90,4 +90,9 @@ public class MemberController {
                 "message", Map.of("type", "success", "text", "회원 탈퇴가 완료되었습니다.")
         ));
     }
+
+    @GetMapping("/test")
+    public void test() {
+        System.out.println("testCode");
+    }
 }

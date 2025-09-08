@@ -209,6 +209,14 @@ html {
     cursor: pointer;
 }
 
+.update-reservation-btn {
+    background: #ddd;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
 .confirm-btn {
     background: #1b64da;
     border: none;

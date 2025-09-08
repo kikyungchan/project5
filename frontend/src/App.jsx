@@ -11,6 +11,8 @@ import ReservationPage from "./feature/reservation/ReservationPage.jsx";
 import ReservationCheck from "./feature/reservation/ReservationCheck.jsx";
 import { AuthenticationContextProvider } from "./feature/common/AuthenticationContextProvider.jsx";
 import DepartmentPage from "./feature/department/DepartmentPage.jsx";
+import Directions from "./feature/directions/Directions.jsx";
+import HospitalMap from "./feature/directions/HospitalMap.jsx";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
           <Route path="signup" element={<MemberAdd />} />
           <Route path="login" element={<MemberLogin />} />
           <Route path="edit" element={<MemberEdit />} />
+          <Route path="map" element={<Directions />} />
+          <Route path="infor" element={<HospitalMap />} />
         </Routes>
         <Footer />
       </BrowserRouter>

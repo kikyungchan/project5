@@ -32,6 +32,14 @@ export default function ReservationCheck() {
       });
   }
 
+  function handleUpdateReservation(id) {
+    axios
+      .put(`/api/reservation/update/${id}`, {
+        params: { memberId: user?.loginId },
+      })
+      .then((res) => {});
+  }
+
   return (
     <div className="reservation-check-container">
       <h2 className="page-title">진료예약확인</h2>
@@ -52,7 +60,7 @@ export default function ReservationCheck() {
                   <th>의료진</th>
                   <th>예약일시</th>
                   <th>메모</th>
-                  <th>취소</th>
+                  <th>예약변경 / 취소</th>
                 </tr>
               </thead>
               <tbody>
@@ -65,6 +73,13 @@ export default function ReservationCheck() {
                     </td>
                     <td>{r.memo || "-"}</td>
                     <td>
+                      <button
+                        onClick={handleUpdateReservation}
+                        className="update-reservation-btn"
+                      >
+                        예약변경
+                      </button>
+                      /
                       <button
                         className="cancel-btn"
                         onClick={() => handleCancel(r.id)}

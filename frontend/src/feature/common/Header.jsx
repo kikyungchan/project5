@@ -23,6 +23,7 @@ function Header() {
           {user ? (
             <>
               <span
+                style={{ cursor: "pointer" }}
                 className="header-mypage"
                 onClick={() => navigate("/mypage")}
               >
@@ -62,7 +63,16 @@ function Header() {
             진료안내
           </li>
           <li>
-            <a href="/usage">이용안내</a>
+            <li
+              className="menu-item"
+              style={{
+                fontSize: "22px",
+                fontWeight: "bold",
+              }}
+              onMouseEnter={() => setOpenMenu("useHelp")}
+            >
+              이용안내
+            </li>
           </li>
           <li>
             <a href="/health">건강정보</a>
@@ -75,7 +85,7 @@ function Header() {
           </li>
         </ul>
 
-        {/* hover 시 나오는 div */}
+        {/* 진료안내 hover시*/}
         {openMenu === "guide" && (
           <div className="submenu-bar">
             <ul>
@@ -94,6 +104,19 @@ function Header() {
               </li>
               <li>
                 <a href="/emergency">응급의료센터</a>
+              </li>
+            </ul>
+          </div>
+        )}
+        {/* 이용안내 hover시*/}
+        {openMenu === "useHelp" && (
+          <div className="submenu-bar">
+            <ul>
+              <li>
+                <a href="/map">오시는길</a>
+              </li>
+              <li>
+                <a href="/infor">원내위치도</a>
               </li>
             </ul>
           </div>
