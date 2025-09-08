@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import "./DirectionsMenu.css";
 import {
@@ -9,18 +9,19 @@ import {
 } from "react-icons/fa";
 
 export default function DirectionsMenu() {
+  const [showMap, setShowMap] = useState(false);
   const navigate = useNavigate();
 
   const menus = [
     {
       label: "오시는 길",
       icon: <FaMapMarkerAlt size={40} />,
-      path: "/directions",
+      path: "/map",
     },
     {
       label: "원내위치도",
       icon: <FaHospital size={40} />,
-      path: "/hospitalmap",
+      path: "/infor",
     },
     {
       label: "진료과/검사실",
@@ -55,18 +56,28 @@ export default function DirectionsMenu() {
           서울특별시 마포구 신촌로 176 <br />
           중앙빌딩 5층 중앙정보처리학원/중앙정보기술인재개발원 이대 신촌캠퍼스
         </p>
-
+        <button
+          type="button"
+          className="map-toggle-btn"
+          onClick={() => setShowMap((v) => !v)}
+          aria-expanded={showMap}
+          aria-controls="kakaoMapIframe"
+        >
+          {showMap ? "지도 접기" : "지도에서 직접보기"}
+        </button>
         {/* 카카오 지도 iframe */}
-        <div className="map-iframe mt-4">
-          <iframe
-            title="이대 신촌캠퍼스 지도"
-            src="https://map.kakao.com/link/map/중앙정보처리학원,37.5565,126.9452"
-            width="100%"
-            height="550"
-            style={{ border: "0" }}
-            allowFullScreen
-          ></iframe>
-        </div>
+        {showMap && (
+          <div className="map-iframe mt-4">
+            <iframe
+              title="이대 신촌캠퍼스 지도"
+              src="https://map.kakao.com/link/map/중앙정보처리학원,37.5565,126.9452"
+              width="100%"
+              height="550"
+              style={{ border: "0" }}
+              allowFullScreen
+            />
+          </div>
+        )}
       </div>
     </div>
   );

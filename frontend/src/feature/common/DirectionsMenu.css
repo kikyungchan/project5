@@ -41,3 +41,18 @@
     font-size: 16px;
     font-weight: 500;
 }
+
+.map-toggle-btn {
+    margin-top: 12px;
+    background: #1b64da;
+    color: #fff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.map-toggle-btn:hover {
+    background: #174ea6;
+}
