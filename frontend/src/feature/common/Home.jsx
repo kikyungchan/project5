@@ -43,7 +43,7 @@ function Home() {
           <p>대표전화 1588-5700</p>
           <button>안내보기</button>
         </div>
-        {/* 여기만 로그인 여부에 따라 변경 */}
+        {/* 로그인 여부에 따라 화면 렌더 변경.*/}
         {user ? (
           <div className="shortcut login-box">
             <div className="login-header">

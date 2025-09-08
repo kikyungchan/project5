@@ -62,26 +62,42 @@ function Header() {
           >
             진료안내
           </li>
-          <li>
-            <li
-              className="menu-item"
-              style={{
-                fontSize: "22px",
-                fontWeight: "bold",
-              }}
-              onMouseEnter={() => setOpenMenu("useHelp")}
-            >
-              이용안내
-            </li>
+          <li
+            className="menu-item"
+            style={{
+              fontSize: "22px",
+              fontWeight: "bold",
+            }}
+            onMouseEnter={() => setOpenMenu("useHelp")}
+          >
+            이용안내
           </li>
-          <li>
-            <a href="/health">건강정보</a>
+          <li
+            style={{
+              fontSize: "22px",
+              fontWeight: "bold",
+            }}
+            className="menu-item"
+          >
+            건강정보
           </li>
-          <li>
-            <a href="/customer">고객참여</a>
+          <li
+            style={{
+              fontSize: "22px",
+              fontWeight: "bold",
+            }}
+            className="menu-item"
+          >
+            고객참여
           </li>
-          <li>
-            <a href="/intro">병원소개</a>
+          <li
+            style={{
+              fontSize: "22px",
+              fontWeight: "bold",
+            }}
+            className="menu-item"
+          >
+            병원소개
           </li>
         </ul>
 
