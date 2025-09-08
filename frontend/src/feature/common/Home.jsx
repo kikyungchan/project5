@@ -3,6 +3,7 @@ import MainBanner from "../common/MainBanner";
 import "./css/Home.css";
 import { useNavigate } from "react-router";
 import { AuthenticationContext } from "./AuthenticationContextProvider.jsx";
+import DirectionMenu from "./DirectionMenu.jsx";
 
 function Home() {
   const navigate = useNavigate();
@@ -69,6 +70,7 @@ function Home() {
           </div>
         )}
       </section>
+      <DirectionMenu />
     </main>
   );
 }
