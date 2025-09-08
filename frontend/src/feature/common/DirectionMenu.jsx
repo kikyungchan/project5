@@ -60,7 +60,7 @@ export default function DirectionsMenu() {
         <div className="map-iframe mt-4">
           <iframe
             title="이대 신촌캠퍼스 지도"
-            src="https://map.kakao.com/link/map/이대 신촌캠퍼스,37.556632,126.946261"
+            src="https://map.kakao.com/link/map/중앙정보처리학원,37.5565,126.9452"
             width="100%"
             height="550"
             style={{ border: "0" }}
