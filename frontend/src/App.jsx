@@ -13,6 +13,7 @@ import { AuthenticationContextProvider } from "./feature/common/AuthenticationCo
 import DepartmentPage from "./feature/department/DepartmentPage.jsx";
 import Directions from "./feature/directions/Directions.jsx";
 import HospitalMap from "./feature/directions/HospitalMap.jsx";
+import HospitalIntro from "./feature/directions/HospitalIntro.jsx";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="edit" element={<MemberEdit />} />
           <Route path="map" element={<Directions />} />
           <Route path="infor" element={<HospitalMap />} />
+          <Route path="intro" element={<HospitalIntro />} />
         </Routes>
         <Footer />
       </BrowserRouter>

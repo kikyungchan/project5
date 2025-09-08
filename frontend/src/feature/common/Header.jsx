@@ -81,7 +81,7 @@ function Header() {
             <a href="/customer">고객참여</a>
           </li>
           <li>
-            <a href="/about">병원소개</a>
+            <a href="/intro">병원소개</a>
           </li>
         </ul>
 
